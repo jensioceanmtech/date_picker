@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_function_declarations_over_variables
+
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart' as intl;
@@ -38,8 +40,7 @@ class DaysView extends StatelessWidget {
   })  : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate"),
         assert(() {
           if (selectedDate == null) return true;
-          return selectedDate.isAfter(minDate) &&
-              selectedDate.isBefore(maxDate);
+          return selectedDate.isAfter(minDate) && selectedDate.isBefore(maxDate);
         }(), "selected date should be in the range of min date & max date");
 
   /// The currently selected date.
@@ -126,26 +127,24 @@ class DaysView extends StatelessWidget {
     MaterialLocalizations localizations,
   ) {
     final List<Widget> result = <Widget>[];
-    final weekdayNames =
-        intl.DateFormat('', locale.toString()).dateSymbols.SHORTWEEKDAYS;
+    final weekdayNames = intl.DateFormat('', locale.toString()).dateSymbols.SHORTWEEKDAYS;
 
-    // Monday is represented by 1 and Sunday is represented by 7.
-    // but MaterialLocalizations does not have 7 instead the sunday is 0.
-    // final int todayIndex = currentDate.weekday == 7 ? 0 : currentDate.weekday;
-    // TODO: add custom firstDayOfWeekIndex.
+    final firstLetterLowerCase = (String input) {
+      if (input.length <= 1) {
+        return input.toLowerCase();
+      } else {
+        return input[0].toUpperCase() + input.substring(1).toLowerCase();
+      }
+    };
+
     for (int i = localizations.firstDayOfWeekIndex; true; i = (i + 1) % 7) {
-      // to save space in arabic as arabic don't has short week days.
-      final String weekday = weekdayNames[i].replaceFirst('ال', '');
-      // final bool isToday = (i == todayIndex);
+      final String weekday = firstLetterLowerCase(weekdayNames[i].replaceFirst('ال', ''));
       result.add(
         ExcludeSemantics(
           child: Center(
             child: Text(
-              weekday.toUpperCase(),
+              weekday,
               style: daysNameTextStyle,
-              // style: isToday
-              //     ? headerStyle?.copyWith(color: Colors.red)
-              //     : headerStyle,
             ),
           ),
         ),
@@ -159,8 +158,7 @@ class DaysView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
+    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     //
     //
     //
@@ -183,10 +181,8 @@ class DaysView extends StatelessWidget {
         dayItems.add(const SizedBox.shrink());
       } else {
         final DateTime dayToBuild = DateTime(year, month, day);
-        final bool isDisabled =
-            dayToBuild.isAfter(maxDate) || dayToBuild.isBefore(minDate);
-        final bool isSelectedDay =
-            DateUtils.isSameDay(selectedDate, dayToBuild);
+        final bool isDisabled = dayToBuild.isAfter(maxDate) || dayToBuild.isBefore(minDate);
+        final bool isSelectedDay = DateUtils.isSameDay(selectedDate, dayToBuild);
 
         final bool isToday = DateUtils.isSameDay(currentDate, dayToBuild);
         //
@@ -238,15 +234,13 @@ class DaysView extends StatelessWidget {
               // day of month before the rest of the date, as they are looking
               // for the day of month. To do that we prepend day of month to the
               // formatted full date.
-              label:
-                  '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
+              label: '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
               selected: isSelectedDay,
               excludeSemantics: true,
               child: dayWidget,
             ),
           );
         }
-
         dayItems.add(dayWidget);
       }
     }

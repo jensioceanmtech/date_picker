@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       locale: const Locale('en'),
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: const [
@@ -34,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DateTime? selectedDate;
+  DateTime? selectedDate; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,12 +54,31 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: () async {
                 final date = await showDatePickerDialog(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
-                  minDate:
-                      DateTime.now().subtract(const Duration(days: 365 * 3)),
-                );
+                    context: context,
+                    padding: EdgeInsets.all(10),
+                    initialDate: DateTime.now(),
+                    contentPadding: EdgeInsets.all(35),
+                    maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
+                    minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
+                    leadingDateTextStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                    currentDateDecoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromARGB(255, 153, 88, 31),
+                    ),
+                    daysNameTextStyle: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 153, 88, 31),
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal),
+                    currentDateTextStyle: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                    slidersColor: Color.fromARGB(255, 153, 88, 31),
+                    slidersSize: 25,
+                    selectedCellTextStyle: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                    enabledCellTextStyle: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+                    selectedCellDecoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromARGB(255, 153, 88, 31),
+                    ));
                 if (date != null) {
                   setState(() {
                     selectedDate = date;

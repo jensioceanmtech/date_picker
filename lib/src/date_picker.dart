@@ -286,8 +286,7 @@ class _DatePickerState extends State<DatePicker> {
         );
 
     final sliderSize = widget.slidersSize ?? 20;
-    final slidersColor =
-        widget.slidersColor ?? Theme.of(context).colorScheme.primary;
+    final slidersColor = widget.slidersColor ?? Theme.of(context).colorScheme.primary;
 
     //
     //! days of the week
@@ -304,8 +303,7 @@ class _DatePickerState extends State<DatePicker> {
     //! enabled
     //
     //
-    final Color enabledCellColor =
-        widget.enabledCellColor ?? colorScheme.onSurface;
+    final Color enabledCellColor = widget.enabledCellColor ?? colorScheme.onSurface;
 
     final TextStyle enabledCellTextStyle = widget.enabledCellTextStyle ??
         textTheme.titleLarge!.copyWith(
@@ -319,8 +317,7 @@ class _DatePickerState extends State<DatePicker> {
     //! disabled
     //
     //
-    final Color disbaledCellColor =
-        widget.disbaledCellColor ?? colorScheme.onSurface.withOpacity(0.30);
+    final Color disbaledCellColor = widget.disbaledCellColor ?? colorScheme.onSurface.withOpacity(0.30);
 
     final TextStyle disbaledCellTextStyle = widget.disbaledCellTextStyle ??
         textTheme.titleLarge!.copyWith(
@@ -334,8 +331,7 @@ class _DatePickerState extends State<DatePicker> {
     //! current
     //
     //
-    final Color currentDateColor =
-        widget.currentDateColor ?? colorScheme.primary;
+    final Color currentDateColor = widget.currentDateColor ?? colorScheme.primary;
 
     final TextStyle currentDateTextStyle = widget.currentDateTextStyle ??
         textTheme.titleLarge!.copyWith(
@@ -353,8 +349,7 @@ class _DatePickerState extends State<DatePicker> {
     //! selected.
     //
     //
-    final Color selectedCellColor =
-        widget.selectedCellColor ?? colorScheme.onPrimary;
+    final Color selectedCellColor = widget.selectedCellColor ?? colorScheme.onPrimary;
 
     final TextStyle selectedCellTextStyle = widget.selectedCellTextStyle ??
         textTheme.titleLarge!.copyWith(
@@ -362,20 +357,17 @@ class _DatePickerState extends State<DatePicker> {
           color: selectedCellColor,
         );
 
-    final BoxDecoration selectedCellDecoration =
-        widget.selectedCellDecoration ??
-            BoxDecoration(
-              color: colorScheme.primary,
-              shape: BoxShape.circle,
-            );
+    final BoxDecoration selectedCellDecoration = widget.selectedCellDecoration ??
+        BoxDecoration(
+          color: colorScheme.primary,
+          shape: BoxShape.circle,
+        );
     //
     //! splash
-    final splashColor = widget.splashColor ??
-        selectedCellDecoration.color?.withOpacity(0.3) ??
-        colorScheme.primary.withOpacity(0.3);
+    final splashColor =
+        widget.splashColor ?? selectedCellDecoration.color?.withOpacity(0.3) ?? colorScheme.primary.withOpacity(0.3);
 
-    final highlightColor =
-        widget.highlightColor ?? Theme.of(context).highlightColor;
+    final highlightColor = widget.highlightColor ?? Theme.of(context).highlightColor;
     //
     //
 
